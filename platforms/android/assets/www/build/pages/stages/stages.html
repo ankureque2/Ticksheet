@@ -1,0 +1,67 @@
+
+<ion-list >
+  <ion-list-header>
+    Construction Stages    
+  </ion-list-header>
+  <ion-item  *ngFor="let header of headers">   
+    <ion-row>
+     <ion-col width-90>
+     <h2 text-left> {{header.title}}</h2>
+     </ion-col>
+     <ion-col width-10>
+    <button clear small item-right item-top  (click)="toggleDetails(header)"><ion-icon primary [name]="header.icon"></ion-icon></button>
+     </ion-col>
+   </ion-row>
+
+  <div *ngIf="header.showDetails">    
+  
+      <ion-item-divider *ngFor="let stage of stages | stageFilter:{headerId:header.stageID}">
+        <div item-content>
+          <ion-label>   
+          <h2 text-left text-wrap> {{stage.StageName}}</h2> 
+          </ion-label>
+         <!--/ion-card-header>
+       <ion-card-content-->  
+      <ion-row>
+        <ion-col left>Completion</ion-col>
+        <ion-col right>{{stage.CurrentWorkProgress}} %</ion-col>
+      </ion-row>
+        <ion-range no-padding min="0" max="100" [(ngModel)]="stage.CurrentWorkProgress" secondary pin="true">  
+           <!--ion-input range-right>{{stage.CurrentWorkProgress}}</ion-input-->          
+        </ion-range>     
+       <!--/ion-card-content--> 
+       
+        <ion-row no-padding>
+          <ion-col>
+            <ion-content>
+            <ion-fab left top>
+              <button ion-fab mini color="primary"><ion-icon name="images"></ion-icon></button>
+              <ion-fab-list side="right">
+                <button ion-fab  (click)="takePicture(stage.stageID, stage.plotID)"><ion-icon name="camera"></ion-icon></button>
+                <button ion-fab><ion-icon name="image"></ion-icon></button>
+                <button ion-fab><ion-icon name="link"></ion-icon></button>
+               </ion-fab-list>
+            </ion-fab>
+            </ion-content>
+           <!--button primary clear small (click)="takePicture(stage.stageID, stage.plotID)">
+            <ion-icon name="camera"></ion-icon>
+            <div>Pictures</div>
+           </button-->
+          </ion-col>
+         <ion-col>
+          <button primary clear small (click)="takeNotes(stage.stageID, stage.plotID)">
+            <ion-icon name="text"></ion-icon>
+            <div>4 Comments</div>
+          </button>
+        </ion-col>
+        <ion-col center text-center>
+          <ion-note>
+            11h ago
+          </ion-note>
+        </ion-col>
+       </ion-row>
+       </div>
+      </ion-item-divider>    
+  </div>   
+ </ion-item> 
+</ion-list>

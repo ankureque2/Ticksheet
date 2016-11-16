@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar primary>
+    <button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Registration</ion-title>
+      <ion-buttons end>
+     <button >
+       <ion-icon name="settings"></ion-icon>
+     </button>
+      </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding  class="register">
+ <div *ngIf="!connected">
+  <p>
+    Type the 9 digit activation code below to get started using House building mobile app.
+  </p>
+  <ion-input type="text" [(ngModel)]='activecode' placeholder="Activation Code"></ion-input>
+  <button block secondary (click)="registerApp()">Activate</button>
+  </div>
+ <div *ngIf="connected">
+    <p>
+         Welcome to House building Mobile app. Your Activation Code is {{activecode}}
+    </p>
+    <button (click)="gotoSitesPage()">
+       <ion-icon name="home"> Sites</ion-icon>
+   </button>
+  <button (click)="deregister()">
+    <ion-icon name="remove-circle"> De-Register</ion-icon>
+  </button>
+ </div>
+</ion-content>

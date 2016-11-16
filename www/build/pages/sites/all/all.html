@@ -1,0 +1,32 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>All</ion-title>
+  </ion-navbar>
+
+</ion-header>
+<ion-content padding>
+  <!--ion-searchbar primary (ionInput)="getSites($event)"></ion-searchbar-->
+   <ion-list>
+    <ion-item inset *ngFor="let site of sitesList">
+    <ion-label>
+    <button ion-item dark no-lines clear (click) = "showPlots(site.RecordID)">
+     <h2 text-left text-wrap> {{site.PrimaryName}}</h2>
+     <h4 text-left text-wrap>{{site.Address}}</h4>
+     <h4 text-left>{{site.PostCode}}</h4>
+    </button>
+    </ion-label>
+          
+     <div item-right class='row'>
+       <div class="col-xs-12 col-sm-4">
+        <ion-toggle checked="{{site.Selected}}" (ionChange)="onSelected($event, site.RecordID)"></ion-toggle>
+       </div>
+       <div class="col-xs-12 col-sm-4">
+          <button secondary clear is-active="false" padding-vertical (click)="openModal(site.RecordID)">
+          <ion-icon  name="information-circle"></ion-icon>    
+         </button>   
+       </div>                
+     </div>      
+    </ion-item>
+   </ion-list>
+</ion-content>
